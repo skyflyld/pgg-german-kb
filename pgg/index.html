@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PGG 德语专四考点知识库</title>
+<style>
+:root {
+  --bg: #f8f6f0;
+  --card: #ffffff;
+  --accent: #1a5276;
+  --accent2: #2e86c1;
+  --gold: #d4a017;
+  --text: #1a1a2e;
+  --text2: #4a4a5a;
+  --border: #e0ddd5;
+  --tag-g: #e8f4f8;
+  --tag-v: #f0e6f6;
+  --tag-r: #e8f5e9;
+  --tag-w: #fff3e0;
+  --tag-l: #fce4ec;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; padding: 40px 20px; text-align: center; border-radius: 16px; margin-bottom: 30px; }
+.header h1 { font-size: 2em; margin-bottom: 8px; }
+.header p { opacity: .85; }
+.header .badge { display: inline-block; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 20px; font-size: .8em; margin-top: 12px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.tab-btn { padding: 10px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font-size: .9em; transition: .2s; }
+.tab-btn:hover { background: #eef0eb; }
+.tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.section { display: none; }
+.section.active { display: block; }
+.section-title { font-size: 1.5em; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 3px solid var(--accent); }
+.card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--border); }
+.card h3 { font-size: 1.1em; margin-bottom: 10px; color: var(--accent2); }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: .75em; margin: 2px; }
+.tag-g { background: var(--tag-g); color: #1a5276; }
+.tag-v { background: var(--tag-v); color: #6a1b9a; }
+.tag-r { background: var(--tag-r); color: #2e7d32; }
+.tag-w { background: var(--tag-w); color: #e65100; }
+.tag-l { background: var(--tag-l); color: #c62828; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--accent); color: #fff; font-size: .85em; }
+tr:hover { background: #f5f5f0; }
+.de { background: #f0f0e8; padding: 2px 6px; border-radius: 4px; font-size: .9em; }
+.zh { color: var(--text2); font-size: .85em; }
+.beispiel { background: #fafaf5; border-left: 4px solid var(--accent2); padding: 12px 16px; margin: 8px 0; border-radius: 0 8px 8px 0; font-size: .9em; }
+.cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+.cloud span { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); font-size: .85em; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+.stat-card .num { font-size: 1.8em; font-weight: 700; color: var(--accent2); }
+.stat-card .label { font-size: .8em; color: var(--text2); }
+.bar-chart { margin: 12px 0; }
+.bar-item { display: flex; align-items: center; margin: 6px 0; gap: 10px; }
+.bar-label { width: 120px; font-size: .85em; flex-shrink: 0; }
+.bar-fill { height: 24px; border-radius: 12px; min-width: 4px; }
+.collapse-header { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; user-select: none; }
+.collapse-header:hover { color: var(--accent2); }
+.collapse-body { overflow: hidden; max-height: 0; transition: max-height .3s ease; }
+.collapse-body.open { max-height: 2000px; }
+.collapse-icon { transition: transform .3s; }
+.collapse-icon.open { transform: rotate(180deg); }
+.filter-bar { margin: 12px 0; }
+.filter-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); cursor: pointer; font-size: .82em; margin: 3px; }
+.filter-btn.active { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+.year23, .year24, .year25, .year26 { display: none; }
+.theme-toggle { position: fixed; bottom: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 1.2em; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.15); z-index: 100; border: none; }
+@media (max-width: 640px) {
+  .header h1 { font-size: 1.5em; }
+  .tab-btn { padding: 8px 12px; font-size: .8em; }
+  .bar-label { width: 80px; font-size: .75em; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📚 PGG 德语专四考点知识库</h1>
+    <p>Prüfung für das Germanistik-Grundstudium · 基于2024-2026三年真题的系统化考点梳理</p>
+    <div class="badge">📅 2024+2025+2026 三卷已收录 · 逐年扩增中</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">3</div><div class="label">真题年份</div></div>
+    <div class="stat-card"><div class="num">5</div><div class="label">题型板块</div></div>
+    <div class="stat-card"><div class="num">35%</div><div class="label">语法词汇占比</div></div>
+    <div class="stat-card"><div class="num">~4200</div><div class="label">核心词汇量</div></div>
+    <div class="stat-card"><div class="num">150-180</div><div class="label">作文字数要求</div></div>
+    <div class="stat-card"><div class="num">32%</div><div class="label">2026年及格率</div></div>
+    <div class="stat-card"><div class="num">2.17</div><div class="label">听写平均分/10</div></div>
+    <div class="stat-card"><div class="num">53.38</div><div class="label">2026年均分</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="exam">📋 考试结构</button>
+    <button class="tab-btn" data-tab="grammar">🔤 语法考点</button>
+    <button class="tab-btn" data-tab="vocab">📖 核心词汇</button>
+    <button class="tab-btn" data-tab="reading">📰 阅读专题</button>
+    <button class="tab-btn" data-tab="writing">✏️ 写作指南</button>
+    <button class="tab-btn" data-tab="past">📅 真题详解</button>
+    <button class="tab-btn" data-tab="compare">📊 双年对比</button>
+    <button class="tab-btn" data-tab="diagnosis">🔬 学生诊断</button>
+  </div>
+
+  <!-- ======= EXAM STRUCTURE ======= -->
+  <div class="section active" id="tab-exam">
+    <h2 class="section-title">📋 考试整体结构</h2>
+    <div class="card">
+      <h3>试卷构成（总分100%）</h3>
+      <div class="bar-chart">
+        <div class="bar-item"><span class="bar-label">Ⅰ 听写 Diktat</span><div class="bar-fill" style="width:10%;background:#c62828;">10%</div></div>
+        <div class="bar-item"><span class="bar-label">Ⅱ 听力 Hörverstehen</span><div class="bar-fill" style="width:20%;background:#e65100;">20%</div></div>
+        <div class="bar-item"><span class="bar-label">Ⅲ 阅读 Leseverstehen</span><div class="bar-fill" style="width:20%;background:#2e7d32;">20%</div></div>
+        <div class="bar-item"><span class="bar-label">Ⅳ 语法词汇</span><div class="bar-fill" style="width:35%;background:#1a5276;">35%</div></div>
+        <div class="bar-item"><span class="bar-label">Ⅴ 写作 Schriftlich</span><div class="bar-fill" style="width:15%;background:#6a1b9a;">15%</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>考试时间分配</h3>
+      <table>
+        <tr><th>部分</th><th>时间</th><th>题型</th><th>题量</th></tr>
+        <tr><td>Ⅰ 听写</td><td>15 min</td><td>A) 填空听写 B) 逐句听写</td><td>8空 + 全篇</td></tr>
+        <tr><td>Ⅱ 听力</td><td>20 min</td><td>短对话选择 + 短文正误/选择</td><td>6 + 14题</td></tr>
+        <tr><td>Ⅲ 阅读</td><td>50 min</td><td>标题匹配 + 阅读选择</td><td>4 + 16题</td></tr>
+        <tr><td>Ⅳ 语法词汇</td><td>45 min</td><td>A选择/B完形/C词汇/D改写/E改错</td><td>60题</td></tr>
+        <tr><td>Ⅴ 写作</td><td>40 min</td><td>图表描述 + 观点表达</td><td>1篇(150-180词)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Ⅳ 语法词汇各小题详解</h3>
+      <table>
+        <tr><th>小题</th><th>分值</th><th>题号</th><th>说明</th></tr>
+        <tr><td>A) 语法选择</td><td>5%</td><td>41-50</td><td>句法/词法辨析</td></tr>
+        <tr><td>B) 完形填空</td><td>10%</td><td>51-70</td><td>2篇各10空，上下文+语法</td></tr>
+        <tr><td>C) 词汇填空</td><td>10%</td><td>71-90</td><td>21题，语境+搭配</td></tr>
+        <tr><td>D) 句子改写</td><td>5%</td><td>91-95</td><td>同义转换</td></tr>
+        <tr><td>E) 改错</td><td>5%</td><td>96-100</td><td>每句2处错误</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>📊 2026年真实成绩分析 (南国商学院26人)</h3>
+      <p style="color:var(--text2);margin-bottom:10px;">基于广外南国商学院德语专业考生分数（2025 N=27, 2026 N=26），各题平均分与满分对比：</p>
+      <div class="bar-chart">
+        <div class="bar-item"><span class="bar-label">听写 2.14/10</span><div class="bar-fill" style="width:21%;background:#c62828;">21%</div></div>
+        <div class="bar-item"><span class="bar-label">听力 15.78/20</span><div class="bar-fill" style="width:79%;background:#e65100;">79%</div></div>
+        <div class="bar-item"><span class="bar-label">阅读 13.32/20</span><div class="bar-fill" style="width:67%;background:#2e7d32;">67%</div></div>
+        <div class="bar-item"><span class="bar-label">语法词汇 9.49/35</span><div class="bar-fill" style="width:27%;background:#1a5276;">27%</div></div>
+        <div class="bar-item"><span class="bar-label">写作 8.08/15</span><div class="bar-fill" style="width:54%;background:#6a1b9a;">54%</div></div>
+      </div>
+      <table style="margin-top:12px;">
+        <tr><th>指标</th><th>2025</th><th>2026</th><th>趋势</th></tr>
+        <tr><td>平均总分</td><td>44.20</td><td>53.38</td><td style="color:#2e7d32;">⬆ +9.17</td></tr>
+        <tr><td>及格率</td><td>19%</td><td>32%</td><td style="color:#2e7d32;">⬆ +13%</td></tr>
+        <tr><td>听写(10)</td><td>2.11</td><td>2.17</td><td>→ +0.06</td></tr>
+        <tr><td>语法词汇(35)</td><td>8.04</td><td>10.93</td><td style="color:#2e7d32;">⬆ +2.90</td></tr>
+      </table>
+      <p style="margin-top:8px;color:var(--text2);font-size:.85em;">💡 数据来自广外南国商学院德语专业2025-2026年PGG成绩单。结论：<strong>语法词汇+听写是最大失分项</strong>，决定及格与否。2026年全板块有提升，总分+9.17。</p>
+    </div>
+  </div>
+
+  <!-- ======= GRAMMAR ======= -->
+  <div class="section" id="tab-grammar">
+    <h2 class="section-title">🔤 语法考点全谱系</h2>
+    <div class="card">
+      <h3>2025 A卷语法选择 (41-50)</h3>
+      <table>
+        <tr><th>#</th><th>考点</th><th>答案</th><th>例句</th></tr>
+        <tr><td>41</td><td>时间从句连词</td><td>bevor</td><td><span class="de">Bevor</span> die Schulaufgaben fertig sind</td></tr>
+        <tr><td>42</td><td>不定式 statt...zu</td><td>Statt</td><td><span class="de">Statt</span> einen Vortrag zu halten</td></tr>
+        <tr><td>43</td><td>关系代词(Pl)</td><td>die</td><td>Stimmen, <span class="de">die</span> eintreten</td></tr>
+        <tr><td>44</td><td>wer-Satz</td><td>Wer</td><td><span class="de">Wer</span> zu viel arbeitet</td></tr>
+        <tr><td>45</td><td>indem (方式)</td><td>indem</td><td><span class="de">indem</span> er viel Tee trinkt</td></tr>
+        <tr><td>46</td><td>etwas + Adj.nominal</td><td>Dringendes</td><td><span class="de">etwas Dringendes</span></td></tr>
+        <tr><td>47</td><td>Grund liegt in</td><td>in</td><td>Grund liegt <span class="de">in</span> einer Vorstellung</td></tr>
+        <tr><td>48</td><td>angewiesen sein auf</td><td>angewiesen</td><td><span class="de">angewiesen</span> auf eine Mehrheit</td></tr>
+        <tr><td>49</td><td>als ob + KII</td><td>ob</td><td>als <span class="de">ob</span> wir bestimmt <span class="de">wären</span></td></tr>
+        <tr><td>50</td><td>weder...noch</td><td>Weder</td><td><span class="de">Weder</span> ihm noch mir</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>2026 A卷语法选择 (41-50)</h3>
+      <table>
+        <tr><th>#</th><th>考点</th><th>答案</th><th>例句</th></tr>
+        <tr><td>41</td><td>dass-Satz (es形式主语)</td><td>dass</td><td>Es ist üblich, <span class="de">dass</span> man...mitbringt</td></tr>
+        <tr><td>42</td><td>Genitiv (nach + G)</td><td>meiner</td><td>Nach der Geburt <span class="de">meiner</span> Tochter</td></tr>
+        <tr><td>43</td><td>Modalverb Vorschlag</td><td>Soll</td><td><span class="de">Soll</span> ich dir einen Kaffee machen?</td></tr>
+        <tr><td>44</td><td>wer-Satz</td><td>Wer</td><td><span class="de">Wer</span> einen Spielplatz baut</td></tr>
+        <tr><td>45</td><td>lassen + Infinitiv</td><td>lassen</td><td>hat...bauen <span class="de">lassen</span></td></tr>
+        <tr><td>46</td><td>KII (条件句倒装)</td><td>Hätte</td><td><span class="de">Hätte</span> ich früher mehr Sport gemacht</td></tr>
+        <tr><td>47</td><td>Partizip als Adj</td><td>kommenden</td><td>innerhalb der <span class="de">kommenden</span> zehn Tage</td></tr>
+        <tr><td>48</td><td>jn. nach + D fragen</td><td>nach</td><td>Julia <span class="de">nach</span> ihrem Traumberuf fragen</td></tr>
+        <tr><td>49</td><td>entweder...oder</td><td>Entweder</td><td><span class="de">Entweder</span> ich koche...oder</td></tr>
+        <tr><td>50</td><td>weil (Kausalsatz)</td><td>weil</td><td>...abbrechen, <span class="de">weil</span> ihnen die Mittel fehlen</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>核心语法模块详解</h3>
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>📌 动词变位与动词形式</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><table><tr><th>时态/形式</th><th>用法</th><th>例句</th></tr>
+      <tr><td>Präsens</td><td>现在时</td><td><span class="de">Das Forschungsteam hat Daten ausgewertet</span></td></tr>
+      <tr><td>Perfekt</td><td>完成时</td><td><span class="de">hat...bauen lassen / hat...abgewöhnt</span></td></tr>
+      <tr><td>Präteritum</td><td>过去时(叙述)</td><td><span class="de">Die Studie stellte fest...</span></td></tr>
+      <tr><td>Vorgangspassiv</td><td>werden+Partizip II</td><td><span class="de">wurden 1000 Häuser zerstört</span></td></tr>
+      <tr><td>Zustandspassiv</td><td>sein+Partizip II</td><td><span class="de">auf eine Mehrheit angewiesen sein</span></td></tr>
+      <tr><td>Konjunktiv II</td><td>非现实/礼貌</td><td><span class="de">Hätte ich mehr Sport gemacht, wäre ich nicht dick</span></td></tr>
+      <tr><td>lassen + Inf</td><td>使役/让</td><td><span class="de">hat...Schloss Neuschwanstein bauen lassen</span></td></tr></table></div>
+
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>📌 介词与固定搭配</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><table><tr><th>搭配</th><th>含义</th><th>双年出现</th></tr>
+      <tr><td>abhängig sein <strong>von</strong></td><td>取决于</td><td>2025 ✅</td></tr>
+      <tr><td>sich vorbereiten <strong>auf</strong></td><td>准备</td><td>2025 ✅</td></tr>
+      <tr><td>stolz sein <strong>auf</strong></td><td>自豪</td><td>2025 ✅</td></tr>
+      <tr><td>verzichten <strong>auf</strong></td><td>放弃</td><td>2025 ✅</td></tr>
+      <tr><td>jn. <strong>nach</strong> + D fragen</td><td>询问</td><td>2026 ✅</td></tr>
+      <tr><td>sich bedanken <strong>bei</strong> + D</td><td>感谢</td><td>2025 ✅</td></tr>
+      <tr><td>träumen <strong>von</strong></td><td>梦想</td><td>2025+2026 ✅✅</td></tr>
+      <tr><td>Grund liegt <strong>in</strong></td><td>原因在于</td><td>2025 ✅</td></tr>
+      <tr><td>sich entscheiden <strong>für</strong></td><td>决定</td><td>2026 ✅</td></tr>
+      <tr><td><strong>auf</strong> + A (Kontakt aufnehmen)</td><td>联系</td><td>2026 ✅</td></tr></table></div>
+
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>📌 从句与连词</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><table><tr><th>从句</th><th>连词</th><th>真题</th></tr>
+      <tr><td>时间从句</td><td>bevor/nachdem/während/wenn/als</td><td>2025-41</td></tr>
+      <tr><td>原因从句</td><td>weil/da</td><td>2026-50</td></tr>
+      <tr><td>条件从句</td><td>wenn/falls/KII倒装</td><td>2026-46</td></tr>
+      <tr><td>关系从句</td><td>der/die/das</td><td>2025-43, 2026 B</td></tr>
+      <tr><td>方式从句</td><td>indem</td><td>2025-45</td></tr>
+      <tr><td>dass-Satz</td><td>dass</td><td>2026-41</td></tr>
+      <tr><td>wer-Satz</td><td>wer</td><td>2025-44, 2026-44</td></tr>
+      <tr><td>不定式</td><td>statt/um/ohne...zu</td><td>2025-42</td></tr></table></div>
+
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>📌 虚拟式 (Konjunktiv)</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><div class="beispiel">
+        <strong>2025:</strong> <span class="de">als ob wir füreinander bestimmt wären</span> (比较虚拟)<br>
+        <strong>2026:</strong> <span class="de">Hätte ich früher mehr Sport gemacht, wäre ich nicht so dick geworden</span> (条件虚拟倒装)<br>
+        双年稳定性确认：虚拟式每次必考，且偏好非现实条件句
+      </div></div>
+
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>📌 形容词变化/Genitiv</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><div class="beispiel">
+        <strong>2025:</strong> <span class="de">etwas Dringendes</span> (etwas后形容词强变化-es)<br>
+        <strong>2026:</strong> <span class="de">nach der Geburt meiner Tochter</span> (Genitiv Zeitangabe)<br>
+        <strong>2026:</strong> <span class="de">innerhalb der kommenden zehn Tage</span> (Partizip als Attribut im Genitiv)
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ======= VOCAB ======= -->
+  <div class="section" id="tab-vocab">
+    <h2 class="section-title">📖 核心词汇体系</h2>
+    <div class="card">
+      <h3>2025 A卷词汇填空答案</h3>
+      <div class="beispiel">
+        <strong>71-81:</strong> halte · stolz · träumt · vorbereiten · Schwächen · abhängig · schlau · findet · bedankt · fühle · Kraft<br>
+        <strong>82-90:</strong> verzichten · Land · erweitern · lösen · Gedanken · Worauf · ergreifen · getan · Treppe
+      </div>
+    </div>
+    <div class="card">
+      <h3>2026 A卷词汇填空答案</h3>
+      <div class="beispiel">
+        <strong>71-84:</strong> Leben · geträumt · macht · auf · weiblichen · Anfang · entschieden · Internet · Suche · bewegen · Bühne · schlechtes · erreicht · aufgenommen<br>
+        <strong>85-90:</strong> Stärken · gewöhnt · verantwortlich · nächsten · Gründen · Hilfe
+      </div>
+    </div>
+    <div class="card">
+      <h3>高频动词+介词固定搭配</h3>
+      <table>
+        <tr><th>动词</th><th>搭配</th><th>含义</th><th>频次</th></tr>
+        <tr><td>sich vorbereiten</td><td>auf + A</td><td>准备</td><td>⭐⭐⭐</td></tr>
+        <tr><td>verzichten</td><td>auf + A</td><td>放弃</td><td>⭐⭐⭐</td></tr>
+        <tr><td>abhängen</td><td>von + D</td><td>取决于</td><td>⭐⭐⭐</td></tr>
+        <tr><td>sich bedanken</td><td>bei + D</td><td>感谢</td><td>⭐⭐⭐</td></tr>
+        <tr><td>träumen</td><td>von + D</td><td>梦想</td><td>⭐⭐⭐</td></tr>
+        <tr><td>sich interessieren</td><td>für + A</td><td>感兴趣</td><td>⭐⭐⭐</td></tr>
+        <tr><td>sich freuen</td><td>auf/über</td><td>期待/高兴</td><td>⭐⭐⭐</td></tr>
+        <tr><td>bestehen</td><td>aus/in/auf</td><td>组成/在于/坚持</td><td>⭐⭐⭐</td></tr>
+        <tr><td>sich gewöhnen</td><td>an + A</td><td>习惯</td><td>⭐⭐⭐</td></tr>
+        <tr><td>sich entscheiden</td><td>für + A</td><td>决定</td><td>⭐⭐⭐</td></tr>
+        <tr><td>achten</td><td>auf + A</td><td>注意</td><td>⭐⭐⭐</td></tr>
+        <tr><td>teilnehmen</td><td>an + D</td><td>参加</td><td>⭐⭐⭐</td></tr>
+        <tr><td>fragen</td><td>nach + D</td><td>询问</td><td>⭐⭐</td></tr>
+        <tr><td>Kontakt aufnehmen</td><td>zu/mit + D</td><td>联系</td><td>⭐⭐</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>PGG高频词汇话题分类</h3>
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>🏫 教育与学习</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><div class="cloud"><span>das Studium</span><span>die Universität</span><span>der Studiengang</span><span>die Vorlesung</span><span>das Seminar</span><span>die Prüfung</span><span>die Note</span><span>die Bildung</span><span>der Horizont</span><span>die Fähigkeit</span><span>die Kenntnisse</span><span>das Vorstellungsgespräch</span><span>die Stärke</span><span>die Schwäche</span></div></div>
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>🌍 社会与环境</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><div class="cloud"><span>der Klimawandel</span><span>die Umwelt</span><span>die Nachhaltigkeit</span><span>die Politik</span><span>die Gesellschaft</span><span>der Wohlstand</span><span>der Fachkräftemangel</span><span>die Digitalisierung</span><span>die Produktivität</span><span>die Ungleichheit</span><span>die Integration</span><span>der Verkehr</span></div></div>
+      <div class="collapse-header" onclick="toggleCollapse(this)"><span>🏥 健康与生活</span><span class="collapse-icon">▼</span></div>
+      <div class="collapse-body"><div class="cloud"><span>die Gesundheit</span><span>die Bewegung</span><span>der Sport</span><span>die Ernährung</span><span>die Lebensdauer</span><span>das Wohlbefinden</span><span>der Stress</span><span>die geistige Fitness</span><span>das Rauchen</span></div></div>
+    </div>
+  </div>
+
+  <!-- ======= READING ======= -->
+  <div class="section" id="tab-reading">
+    <h2 class="section-title">📰 阅读话题分析</h2>
+    <div class="card">
+      <h3>2025 A卷阅读话题</h3>
+      <table>
+        <tr><th>文本</th><th>话题</th><th>主题</th></tr>
+        <tr><td>Teil 1 (21-22)</td><td><span class="tag tag-r">环境</span></td><td>Klimawandel → Nahrung/Gletscher</td></tr>
+        <tr><td>Teil 1 (23-24)</td><td><span class="tag tag-r">交通</span></td><td>Fahranfänger / ÖPNV Klimaschutz</td></tr>
+        <tr><td>Text A</td><td><span class="tag tag-r">社会</span></td><td>Jugendstudie 2024</td></tr>
+        <tr><td>Text B</td><td><span class="tag tag-r">环境</span></td><td>Kaffeeanbau + Klimawandel</td></tr>
+        <tr><td>Text C</td><td><span class="tag tag-r">社会</span></td><td>Arbeitsmoral der Deutschen</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>2026 A卷阅读话题</h3>
+      <table>
+        <tr><th>文本</th><th>话题</th><th>主题</th></tr>
+        <tr><td>Teil 1 (21-22)</td><td><span class="tag tag-r">科技/社会</span></td><td>Ahaus digitale Stadt / Wohnung für Fachkräfte</td></tr>
+        <tr><td>Teil 1 (23-24)</td><td><span class="tag tag-r">政治/文化</span></td><td>Klima vor Wahl / Kulturförderung Kürzung</td></tr>
+        <tr><td>Text A</td><td><span class="tag tag-r">哲学</span></td><td>Immanuel Kant (Philosophie)</td></tr>
+        <tr><td>Text B</td><td><span class="tag tag-r">文化</span></td><td>Palastmuseum / Verbotene Stadt (中国)</td></tr>
+        <tr><td>Text C</td><td><span class="tag tag-r">科学</span></td><td>Warum singt der Mensch? (Gesangsursprung)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>PGG阅读趋势 → 哲理性/文化性增强</h3>
+      <div class="cloud">
+        <span>Klimawandel</span><span>Digitalisierung</span><span>Bildung</span><span>Arbeitsmarkt</span>
+        <span>Philosophie (neu 2026)</span><span>Kulturerbe (neu 2026)</span><span>Gesang/Musik</span>
+        <span>chinesische Kultur (故宫/春节/丝绸之路)</span>
+      </div>
+      <p style="margin-top:8px;color:var(--text2);">💡 2026新增方向：哲学人物(Kant)、中国文化(故宫)、人类学(Singen)。备考应扩大人文阅读面。</p>
+    </div>
+  </div>
+
+  <!-- ======= WRITING ======= -->
+  <div class="section" id="tab-writing">
+    <h2 class="section-title">✏️ 写作指南</h2>
+    <div class="card">
+      <h3>2025 A卷：Secondhand-Produkte</h3>
+      <div class="beispiel">
+        <strong>图表:</strong> Statista — 5984 Befragte, Oct 2023-Sep 2024<br>
+        数据: Kleidung 21%, Bücher 16%, Schuhe 14%, 45% nichts gekauft<br>
+        <strong>3要点:</strong> ①描述图表  ②个人经验  ③个人观点<br>
+        <strong>字数:</strong> 150-180 Wörter
+      </div>
+    </div>
+    <div class="card">
+      <h3>2026 A卷：Tägliche Zeit am Smartphone</h3>
+      <div class="beispiel">
+        <strong>图表:</strong> Bitkom 2025 — 日均使用分钟数<br>
+        数据: 16-29岁 212min | 39-49岁 158min | 50-64岁 148min | ab 65 103min<br>
+        <strong>3要点:</strong> ①描述图表  ②个人手机使用  ③如何限制使用时间<br>
+        <strong>字数:</strong> 150-180 Wörter
+      </div>
+    </div>
+    <div class="card">
+      <h3>写作模板句型</h3>
+      <div class="beispiel">
+        <strong>图表描述:</strong><br>
+        · <span class="de">Das Schaubild zeigt/stellt dar, dass... / wie hoch der Anteil... ist.</span><br>
+        · <span class="de">Laut der Umfrage haben 21% der Befragten... </span><br>
+        · <span class="de">Auffällig ist, dass...</span><br><br>
+        <strong>观点表达:</strong><br>
+        · <span class="de">Meiner Meinung nach / Ich bin der Ansicht, dass...</span><br>
+        · <span class="de">Einerseits..., andererseits...</span><br>
+        · <span class="de">Ich halte... für sinnvoll, weil...</span><br><br>
+        <strong>提建议 (2026第3点):</strong><br>
+        · <span class="de">Man könnte... / Es wäre besser, wenn...</span><br>
+        · <span class="de">Eine Möglichkeit zur Einschränkung ist...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= PAST PAPERS ======= -->
+  <div class="section" id="tab-past">
+    <h2 class="section-title">📅 历年真题详解</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterYear('all',this)">📚 全部</button>
+      <button class="filter-btn" onclick="filterYear('25',this)">2025 A</button>
+      <button class="filter-btn" onclick="filterYear('26',this)">2026 A</button>
+      <button class="filter-btn" onclick="filterYear('24',this)">2024 A</button>
+      <button class="filter-btn" onclick="filterYear('23',this)">2023 A</button>
+    </div>
+
+    <!-- 2023 -->
+    <div class="year23"><div class="card"><h3>2023 Ⅱ: Telefonat/Fußball/西藏经济</h3>
+    <p>Text A: Telefongespräch(Umstellung Party→Campen)<br>
+    Text B: Fußball(Vater-Sohn, Kneipe, Torjubel)<br>
+    Text C: Treppenläufer(Empire State 1576 Stufen)<br>
+    Text D: Tibet Wirtschaft(GDP 1902亿, 产业结构)</p></div></div>
+    <div class="year23"><div class="card"><h3>2023 Ⅲ: Matterhorn/Plastik/Homeoffice</h3>
+    <p>Teil 1: Matterhorn振动 + DB 65.2%准点率 + 女性高管26% + 紫外线风险<br>
+    Text A: Meine Stadt(古城描写, 综合城市文)<br>
+    Text B: Plastiktütenverbot(20亿→61国禁令)<br>
+    Text C: Zu verschenken-Kisten/München + 二手平台</p></div></div>
+    <div class="year23"><div class="card"><h3>2023 Ⅳ 语法答案</h3>
+    <p><strong>A</strong> 41.mir 42.auf 43.um 44.als ob 45.dessen 46.Herren 47.fahrenden 48.besichtigt hatten 49.bevor 50.können<br>
+    <strong>C</strong> gegen/ähnlich/aufhalten/wie/im/je/lassen/putzen/ohne/Zeit/als/den/nach/im/erinnern/Besuch/dich/trug/auf/was</p></div></div>
+    <div class="year23"><div class="card"><h3>2023 Ⅴ 写作: Homeoffice nach Corona</h3>
+    <p>Bitkom: Vor Pandemie 3%纯粹Homeoffice → 疫中25% → 疫后预计8%. 部分远程 15%→20%→27%</p></div></div>
+
+    <!-- 2024 -->
+    <div class="year24"><div class="card"><h3>2024 Ⅱ 听力: WG/Krankheit/Xuan-Papier</h3>
+    <p>Teil 2: WG mit Opa (正误), Beim Arzt, Gespräch/Weltreise, Xuan-Papier/宣纸(2009非遗)</p></div></div>
+    <div class="year24"><div class="card"><h3>2024 Ⅲ 阅读: Füchse+Kulturpass+ChatGPT</h3>
+    <p>Text A: Füchse in der Stadt — Stadtleben/Verkehrsgefahr<br>
+    Text B: Kulturpass — 200€ für 18-Jährige<br>
+    Text C: ChatGPT — KI-Risiken, Tod der Hausarbeit</p></div></div>
+    <div class="year24"><div class="card"><h3>2024 Ⅳ 语法答案</h3>
+    <p><strong>A</strong> 41.die 42.seien 43.haben 44.Wer 45.mehr 46.Achten Sie 47.enthält 48.Obwohl 49.um 50.könnte<br>
+    <strong>C</strong> Krankenhaus/Lügen/beworben/Gründen/beeilen/wegen/teurer/beginnt/Gedächtnis/Lage/Kälte/Während/verboten/untersuchen/sparen/läuft/Begleitung/Eintritt/wie/Beitrag</p></div></div>
+    <div class="year24"><div class="card"><h3>2024 Ⅴ 写作: Bargeld vs. Zahlungsmittel</h3>
+    <p>Statista: Bargeld 72%(2022)↓. 3要点: 描述+个人经验+取消现金的看法</p></div></div>
+
+
+    <div class="year25"><div class="card"><h3>2025 Ⅰ 听写: Kita in Deutschland</h3>
+    <p>主题: 德国幼儿园教育制度。8空填写 + 全文听写。关键词: Kindertageseinrichtung, eigenständig, gemeinschaftsfähig, Disziplinübergreifend, Qualitätsstandard, Investition</p></div></div>
+    <div class="year25"><div class="card"><h3>2025 Ⅱ 听力: Alltag + 4短文</h3>
+    <p>Teil 1: Kino/Konzert, Arbeit/Arzt, Vor/Beim/Nach dem Essen, Cent-Beträge, Telefongeschäft, Unfall<br>
+    Teil 2: Chinese in Berlin (正误), Selbstfahrende Autos, Frühlingsfest (中国), Bahngeschichte</p></div></div>
+    <div class="year25"><div class="card"><h3>2025 Ⅲ 阅读: 环境+社会</h3>
+    <p>Teil 1: Klimawandel Nahrung/Gletscher + Fahranfänger/ÖPNV<br>
+    Text A: Jugendstudie 2024 — Widerstandskraft, Vielfalt, Sport<br>
+    Text B: Kaffee und Klimawandel — Brasilien/Vietnam, CSIRO, Züchtung<br>
+    Text C: Arbeitsmoral — OECD, Teilzeit, Produktivität, Digitalisierung</p></div></div>
+    <div class="year25"><div class="card"><h3>2025 Ⅳ 语法词汇 (答案速查)</h3>
+    <p><strong>A</strong> 41.bevor 42.Statt 43.die 44.Wer 45.indem 46.Dringendes 47.in 48.angewiesen 49.ob 50.Weder<br>
+    <strong>B</strong> haben/auf/Kontrolle/untersucht/darunter/Zuhause/mit/kam/über/wurden + im/kam/hat/früher/dass/dass/wie/die/Bewegung/verkürzt<br>
+    <strong>C</strong> halte/stolz/träumt/vorbereiten/Schwächen/abhängig/schlau/findet/bedankt/fühle/Kraft + verzichten/Land/erweitern/lösen/Gedanken/Worauf/ergreifen/getan/Treppe</p></div></div>
+    <div class="year25"><div class="card"><h3>2025 Ⅴ 写作: Secondhand</h3>
+    <p>Statista图表: 21%衣物, 16%书籍, 14%鞋子. 45%从未买过二手. 3要点: 描述+个人经验+观点</p></div></div>
+
+    <!-- 2026 -->
+    <div class="year26"><div class="card"><h3>2026 Ⅰ 听写: 心态与健康</h3>
+    <p>主题: "Man ist so alt, wie man sich fühlt" — 心态如何影响身体健康和寿命。关键词: Risiko, Krankheit, Einstellung, Stress, geistige Fitness, körperliche/emotionale Fitness</p></div></div>
+    <div class="year26"><div class="card"><h3>2026 Ⅱ 听力: Alltag + 4短文</h3>
+    <p>Teil 1: Spazieren/Kino/Restaurant, U-Bahn/Bus/Fahrrad, Uhrzeit, Bio-Markt/Post, Alterspanne<br>
+    Teil 2: Gesunde Ernährung (正误), Das blaue Sofa, Smart Home, Neue Seidenstraße (中国)</p></div></div>
+    <div class="year26"><div class="card"><h3>2026 Ⅲ 阅读: 哲学+文化+科学</h3>
+    <p>Teil 1: Ahaus digitale Stadt + Wohnung/Fachkräfte + Klima vor Wahl + Kulturförderung Kürzung<br>
+    Text A: Immanuel Kant (Philosophiegeschichte)<br>
+    Text B: Palastmuseum/Verbotene Stadt (中国文化)<br>
+    Text C: Warum singt der Mensch? (人类学)</p></div></div>
+    <div class="year26"><div class="card"><h3>2026 Ⅳ 语法词汇 (答案速查)</h3>
+    <p><strong>A</strong> 41.dass 42.meiner 43.Soll 44.Wer 45.lassen 46.Hätte 47.kommenden 48.nach 49.Entweder 50.weil<br>
+    <strong>B</strong> es/als/ausgerechnet/Begriff/treffen/größere/muss/Beitrag/ungewöhnliche/Zum + als/brauchen/muss/werden/für/Wenn/Stunde/Wer/wenig/fehlt<br>
+    <strong>C</strong> Leben/geträumt/macht/auf/weiblichen/Anfang/entschieden/Internet/Suche/bewegen/Bühne/schlechtes/erreicht/aufgenommen + Stärken/gewöhnt/verantwortlich/nächsten/Gründen/Hilfe</p></div></div>
+    <div class="year26"><div class="card"><h3>2026 Ⅴ 写作: Smartphone-Nutzung</h3>
+    <p>Bitkom 2025图表: 16-29岁212min, ab 65 103min. 3要点: 描述+个人使用+限制方案</p></div></div>
+  </div>
+
+  <!-- ======= COMPARE ======= -->
+  <div class="section" id="tab-compare">
+    <h2 class="section-title">📊 2023-2026 四军对比</h2>
+    <div class="card"><h3>📖 阅读主题四年演变（最重要的趋势）</h3>
+    <table><tr><th>年</th><th>T2 Text A</th><th>T2 Text B</th><th>T2 Text C</th><th>主题方向</th></tr>
+    <tr><td>2023</td><td>Meine Stadt(古城)</td><td>Plastiktütenverbot(环保)</td><td>Zu verschenken-Kisten(消费)</td><td>🟢 生活·环保</td></tr>
+    <tr><td>2024</td><td>Füchse in der Stadt(自然)</td><td>Kulturpass(文化政策)</td><td>ChatGPT(科技)</td><td>🟢 社会·科技</td></tr>
+    <tr><td>2025</td><td>Jugendstudie 2024(社会)</td><td>Kaffee+Klima(环境)</td><td>Arbeitsmoral(经济)</td><td>🟡 社会结构</td></tr>
+    <tr><td>2026</td><td>Immanuel Kant(哲学)</td><td>Palastmuseum(中国文化)</td><td>Ursprung Gesang(人类学)</td><td>🟠 哲学·文化</td></tr>
+    </table>
+    <p style="margin-top:8px;color:var(--text2);font-size:.85em;">📈 趋势: 题材从生活化→哲理化，复杂度逐年上升。2026阅读突破了PGG传统上限。中国元素从听力渗透到阅读主文本。</p></div>
+
+    <div class="card"><h3>🌏 中国元素四年递增轨迹</h3>
+    <table><tr><th>年</th><th>出现位置</th><th>内容</th><th>深度</th></tr>
+    <tr><td>2023</td><td>听力 Text D</td><td>Tibets wirtschaftliche Entwicklung (GDP 1902亿)</td><td>数据介绍</td></tr>
+    <tr><td>2024</td><td>听力 Text D</td><td>Xuan-Papier 宣纸(非遗2009)</td><td>文化+人物</td></tr>
+    <tr><td>2025</td><td>听力 Text C</td><td>Frühlingsfest 春节</td><td>传统习俗</td></tr>
+    <tr><td>2026</td><td>阅读 Text B + 听力 Text D</td><td>Palastmuseum 故宫 + Neue Seidenstraße 新丝路</td><td>文化+政策</td></tr>
+    </table>
+    <p style="margin-top:8px;color:var(--text2);font-size:.85em;">📈 从听力→阅读、从数据→文化深层，中国话题在PGG中的地位持续上升</p></div>
+
+    <div class="card"><h3>✍️ 写作题目四年变迁</h3>
+    <table><tr><th>年</th><th>主题</th><th>数据源</th><th>考查角度</th></tr>
+    <tr><td>2023</td><td>Homeoffice</td><td>Bitkom 2020 (Statista)</td><td>描述+个人经验+建议(tips)</td></tr>
+    <tr><td>2024</td><td>Zahlungsmittel</td><td>Statista 2022</td><td>描述+个人经验+观点(Meinung)</td></tr>
+    <tr><td>2025</td><td>Secondhand-Konsum</td><td>Statista</td><td>描述+个人经验+观点</td></tr>
+    <tr><td>2026</td><td>Smartphone-Nutzung</td><td>Bitkom 2025 (Statista)</td><td>描述+个人使用+限制方案(tipps)</td></tr>
+    </table>
+    <p style="margin-top:8px;color:var(--text2);font-size:.85em;">💡 写作结构四年不变: Bar-/Schaubild描述 → 个人经验 → 观点/建议。数据源均为Statista。掌握一套模板即可应对。</p></div>
+
+    <div class="card"><h3>🧩 跨年语法高频点（四年累计≥3次）</h3>
+    <table><tr><th>考点</th><th>出现年份</th><th>说明</th></tr>
+    <tr><td>连词辨析</td><td>③④⑤⑥</td><td>besonders: bevor/als/indem/um...zu</td></tr>
+    <tr><td>Konjunktiv II</td><td>③④⑤⑥</td><td>könnte / würde / hätte tun können</td></tr>
+    <tr><td>介词固定搭配</td><td>③④⑤⑥</td><td>每卷C部分70%题考介词支配</td></tr>
+    <tr><td>wer-Satz</td><td>④44 ⑤44 ⑥44</td><td>连续3年在41-50题同一位置出现</td></tr>
+    <tr><td>反身动词sich</td><td>③④⑤⑥</td><td>改错中高频缺失，D部分高频重写触发</td></tr>
+    <tr><td>Imperativ</td><td>④42/46 ⑥43</td><td>Sie-Form > ihr-Form</td></tr>
+    <tr><td>Partizipialattribut</td><td>③47 ⑥47</td><td>fahrenden Zug / kommenden Woche</td></tr>
+    <tr><td>Relativsatz</td><td>③45 ④41 ⑤43</td><td>关系代词在Dativ/Genitiv中的变格</td></tr>
+    </table></div>
+
+    <div class="card"><h3>📊 2025 vs 2026 真实成绩对比 (广外南国商学院)</h3>
+    <table><tr><th>指标</th><th>2025</th><th>2026</th><th>变化</th><th>含义</th></tr>
+      <tr><td>平均总分</td><td>44.20</td><td>53.38</td><td style="color:#2e7d32;">+9.17</td><td>⚠️ 仍未及格</td></tr>
+      <tr><td>及格率</td><td>19% (5/27)</td><td>32% (7/22)</td><td style="color:#2e7d32;">+13%</td><td>仅1/3通过</td></tr>
+      <tr><td>听写</td><td>2.11</td><td>2.17</td><td>+0.06</td><td>🔴 连续两年垫底</td></tr>
+      <tr><td>语法词汇</td><td>8.04</td><td>10.93</td><td style="color:#2e7d32;">+2.90</td><td>🔴 最大失分板块</td></tr>
+      <tr><td>听力</td><td>14.78</td><td>16.78</td><td style="color:#2e7d32;">+2.00</td><td>✅ 最好板块</td></tr>
+      <tr><td>阅读</td><td>12.15</td><td>14.48</td><td style="color:#2e7d32;">+2.33</td><td>✅ 稳步提升</td></tr>
+    </table></div>
+    <div class="card"><h3>🔑 备考建议（四军汇总）</h3>
+    <ol style="margin-left:20px;">
+      <li><strong>连词辨析是语法根基:</strong> 4年17种连词反复考，特别关注bevor/als/indem/um...zu/während</li>
+      <li><strong>人文阅读已成趋势:</strong> 2026出现康德哲学和人类学，备考须补充文史哲类德语短文</li>
+      <li><strong>中国话题深度递增:</strong> 从数据介绍→文化深度，需储备中国传统文化德语表达</li>
+      <li><strong>词汇不死背:</strong> 70%词汇填空考固定搭配，背词必配介词+语境</li>
+      <li><strong>写作三段式雷打不动:</strong> 描述图表+个人经验+观点/建议，准备模板+数据描述句型</li>
+      <li><strong>改错是日常训练:</strong> 每句2处错，sich缺失/语序/配价/Kasus是最常考的4类</li>
+    </ol></div>
+  </div>
+
+  <!-- DIAGNOSIS -->
+  <div class="section" id="tab-diagnosis">
+    <h2 class="section-title">🔬 学生薄弱环节诊断</h2>
+    <div class="card"><h3>🔥 失分等级 (N=49)</h3>
+    <table><tr><th>等级</th><th>题型</th><th>均分率</th><th>症状</th><th>根因</th></tr>
+    <tr style="background:#ffebee;"><td>🔴 灾难</td><td>Ⅰ听写</td><td>21%</td><td>74%学生&lt;3/10</td><td>语音-拼写弱·复合词不会拆·节奏不适</td></tr>
+    <tr style="background:#fff3e0;"><td>🟠 高危</td><td>Ⅳ语法词汇</td><td>27%</td><td>74→55%学生&lt;30%</td><td>介词搭配·变位·连词辨析，分水岭</td></tr>
+    <tr style="background:#fff8e1;"><td>🟡 薄弱</td><td>Ⅴ写作</td><td>54%</td><td>56%学生&lt;50%(25)</td><td>句型单一·结构散·词数不达标</td></tr>
+    <tr style="background:#e8f5e9;"><td>🟢 良</td><td>Ⅲ阅读</td><td>66%</td><td>45%达70-85%(26)</td><td>词汇够则能力可迁移</td></tr>
+    <tr style="background:#e8f5e9;"><td>🟢 优</td><td>Ⅱ听力</td><td>79%</td><td>64%达85%+(26)</td><td>题型稳定，训练效果好</td></tr></table></div>
+
+    <div class="card"><h3>📊 得分率分布变化 (2025→2026)</h3>
+    <table><tr><th>题型</th><th>2025分布</th><th>2026分布</th><th>变化</th></tr>
+    <tr><td>Ⅰ听写(10%)</td><td>74%≤3分</td><td>73%≤3分</td><td>⚡ 零变化</td></tr>
+    <tr><td>Ⅱ听力(20%)</td><td>33%达85%+</td><td>64%达85%+</td><td>⬆ +31%</td></tr>
+    <tr><td>Ⅲ阅读(20%)</td><td>74%在50-70%</td><td>45%在70-85%</td><td>⬆ 中位提升</td></tr>
+    <tr><td>Ⅳ语法(35%)</td><td>74%&lt;30%</td><td>55%&lt;30%</td><td>⬆ 改善但仍是短板</td></tr>
+    <tr><td>Ⅴ写作(15%)</td><td>56%&lt;50%</td><td>19%&lt;50%</td><td>⬆ 模板训练有效</td></tr></table></div>
+
+    <div class="card"><h3>🚨 三大致命弱点</h3>
+    <div class="collapse-header" onclick="toggleCollapse(this)"><span>🔴 致命1：听写 — 74%学生连3分都拿不到</span><span class="collapse-icon">▼</span></div>
+    <div class="collapse-body"><ol><li><strong>语音-拼写脱节：</strong>长元音/短元音区分，ä/ö/ü拼写，-er/-en/-e词尾频繁错</li>
+    <li><strong>复合词不会拆：</strong>Kindertageseinrichtung这类长词直接放弃</li>
+    <li><strong>节奏不适：</strong>3遍朗读模式(正常→分节→全文)，短期记忆要求高</li>
+    <li><strong>虚词失分：</strong>der/die/das/den/dem+词尾-n/-m/-r最易漏</li></ol>
+    <p><strong>对策：</strong>每周2次专项听写：练变元音+复合词；慢速→常速递进；逐词检查错因</p></div>
+    <div class="collapse-header" onclick="toggleCollapse(this)"><span>🟠 致命2：语法词汇 — 35%权重的分水岭</span><span class="collapse-icon">▼</span></div>
+    <div class="collapse-body"><ol><li><strong>介词搭配是硬伤：</strong>C部分约70%考固定搭配(sich vorbereiten auf, verzichten auf等)</li>
+    <li><strong>连词辨析不扎实：</strong>A部分必考weil/wenn/als/bevor/indem</li>
+    <li><strong>完形两头难：</strong>B部分20题需理解上下文+辨别语法</li>
+    <li><strong>改写+改错暴露系统漏洞</strong></li></ol>
+    <p><strong>对策：</strong>背词必配介词；连词做对比表；每周1次改错+1次改写专项</p></div>
+    <div class="collapse-header" onclick="toggleCollapse(this)"><span>🟡 致命3：写作 — 看似简单陷阱多</span><span class="collapse-icon">▼</span></div>
+    <div class="collapse-body"><ol><li><strong>结构散：</strong>不按3要点组织，写到哪算哪</li>
+    <li><strong>句型单调：</strong>全篇ich denke/man kann，缺从句和衔接词</li>
+    <li><strong>词数不达标：</strong>150-180词写不够或超太多</li>
+    <li><strong>数据描述差：</strong>图表题不会描述趋势和比较</li></ol>
+    <p><strong>对策：</strong>背3套模板(描述/经验/观点)；练数据表达句式；每次写后数词数</p></div></div>
+  </div>
+</div>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', function() {
+  document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  this.classList.add('active');
+  document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+}));
+
+function toggleCollapse(h) {
+  h.nextElementSibling.classList.toggle('open');
+  h.querySelector('.collapse-icon').classList.toggle('open');
+}
+
+function filterYear(y, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.year23, .year24, .year25, .year26').forEach(e => e.style.display = y === 'all' ? 'block' : (e.classList.contains('year' + y) ? 'block' : 'none'));
+}
+
+function toggleTheme() {
+  const r = document.documentElement, b = document.querySelector('.theme-toggle');
+  if (r.style.getPropertyValue('--bg') === '#1a1a2e') {
+    r.style.setProperty('--bg', '#f8f6f0'); r.style.setProperty('--card', '#ffffff');
+    r.style.setProperty('--border', '#e0ddd5'); r.style.setProperty('--text', '#1a1a2e');
+    r.style.setProperty('--text2', '#4a4a5a'); b.textContent = '🌙';
+  } else {
+    r.style.setProperty('--bg', '#1a1a2e'); r.style.setProperty('--card', '#16213e');
+    r.style.setProperty('--border', '#2a2a4a'); r.style.setProperty('--text', '#e0e0e0');
+    r.style.setProperty('--text2', '#a0a0b0'); b.textContent = '☀️';
+  }
+}
+
+// Show 2025 content by default
+document.querySelectorAll('.year23, .year24, .year25').forEach(e => e.style.display = 'block');
+</script>
+</body>
+</html>
